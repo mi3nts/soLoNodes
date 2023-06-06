@@ -20,7 +20,7 @@ def main():
 
     try:  
     # Detecting if the GPS is Connected
-        i2c = I2C(0)
+        i2c = I2C(1)
         gps = adafruit_gps.GPS_GtopI2C(i2c, debug=False) # Use I2C interface
         print("GPS found")
     except Exception as e:
