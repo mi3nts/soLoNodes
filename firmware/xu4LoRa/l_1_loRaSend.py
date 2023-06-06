@@ -144,7 +144,7 @@ if __name__ == "__main__":
     print()
     print("============ MINTS POLO NODES ============")
     print()
-    mPL.readingDeviceProperties(macAddress,loRaE5MiniPorts,canareePorts,gpsPorts)
+    mPL.readingDeviceProperties(macAddress,loRaE5MiniPorts,ips7100Ports,[])
     
     print("")
     e5MiniOnline,serE5Mini   = mPL.getPort(loRaE5MiniPorts,0,9600)
