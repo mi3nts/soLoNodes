@@ -43,8 +43,8 @@ scd30   = SCD30(bus,debug)
 as7265x = AS7265X(bus,debug)
 
 loRaE5MiniPorts     = mD.loRaE5MiniPorts
-canareePorts        = mD.canareePorts
-gpsPorts            = mD.gpsPorts
+# canareePorts        = mD.canareePorts
+# gpsPorts            = mD.gpsPorts
 appKey              = mD.appKey
 macAddress          = mD.macAddress
 jsonFolderName      = mD.dataFolderJson
