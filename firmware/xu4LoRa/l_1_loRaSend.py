@@ -41,9 +41,10 @@ scd30   = SCD30(bus,debug)
 as7265x = AS7265X(bus,debug)
 
 loRaE5MiniPorts     = mD.loRaE5MiniPorts
-canareePorts        = mD.canareePorts
-gpsPorts            = mD.gpsPorts
-rainPorts           = mD.rainPorts 
+ips7100Ports        = mD.ips7100Ports
+# canareePorts        = mD.canareePorts
+# gpsPorts            = mD.gpsPorts
+# rainPorts           = mD.rainPorts 
 
 appKey              = mD.appKey
 macAddress          = mD.macAddress
@@ -147,10 +148,11 @@ if __name__ == "__main__":
     
     print("")
     e5MiniOnline,serE5Mini   = mPL.getPort(loRaE5MiniPorts,0,9600)
-    canareeOnline,serCanaree = mPL.getPort(canareePorts,0,115200)
-    gpsOnline,serGps         = mPL.getPort(gpsPorts,0,115200)
+    # canareeOnline,serCanaree = mPL.getPort(canareePorts,0,115200)
+    ips7100Online,serIPS7100 = mPL.getPort(ips7100Ports,0,115200)
+    # gpsOnline,serGps         = mPL.getPort(gpsPorts,0,115200)
     
-    rainOnline,serRain       = mPL.getRG15Port(rainPorts,0,9600)
+    # rainOnline,serRain       = mPL.getRG15Port(rainPorts,0,9600)
     # 
 
     # I2C Devices 
@@ -165,29 +167,29 @@ if __name__ == "__main__":
    
     while True:
         try:    
-            mPL.readSensorData(canareeOnline,serCanaree,"IPS7100CNR",serE5Mini)
+            mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100CNR",serE5Mini)
             mintsBCConcatSend08(serE5Mini)
-            mPL.readSensorData(canareeOnline,serCanaree,"BME688CNR",serE5Mini)
+            # mPL.readSensorData(canareeOnline,serCanaree,"BME688CNR",serE5Mini)
             
-            mPL.readSensorData(canareeOnline,serCanaree,"IPS7100CNR",serE5Mini)
-            mintsBCConcatSend08(serE5Mini)
+            # mPL.readSensorData(canareeOnline,serCanaree,"IPS7100CNR",serE5Mini)
+            # mintsBCConcatSend08(serE5Mini)
             mPL.readSensorDataI2c(scd30Online,scd30,"SCD30",serE5Mini)
             
-            mPL.readSensorData(canareeOnline,serCanaree,"IPS7100CNR",serE5Mini)
-            mintsBCConcatSend08(serE5Mini)
-            mPL.readSensorDataGPS(gpsOnline,serGps,"GPRMCPL",serE5Mini)        
+            # mPL.readSensorData(canareeOnline,serCanaree,"IPS7100CNR",serE5Mini)
+            # mintsBCConcatSend08(serE5Mini)
+            # mPL.readSensorDataGPS(gpsOnline,serGps,"GPRMCPL",serE5Mini)        
             
-            mPL.readSensorData(canareeOnline,serCanaree,"IPS7100CNR",serE5Mini)
-            mintsBCConcatSend08(serE5Mini)
-            mPL.readSensorDataI2c(as7265xOnline,as7265x,"AS7265X",serE5Mini)
+            # mPL.readSensorData(canareeOnline,serCanaree,"IPS7100CNR",serE5Mini)
+            # mintsBCConcatSend08(serE5Mini)
+            # mPL.readSensorDataI2c(as7265xOnline,as7265x,"AS7265X",serE5Mini)
             
-            mPL.readSensorData(canareeOnline,serCanaree,"IPS7100CNR",serE5Mini)
-            mintsBCConcatSend08(serE5Mini)
-            mPL.readSensorDataGPS(gpsOnline,serGps,"GPGGAPL",serE5Mini)
+            # mPL.readSensorData(canareeOnline,serCanaree,"IPS7100CNR",serE5Mini)
+            # mintsBCConcatSend08(serE5Mini)
+            # mPL.readSensorDataGPS(gpsOnline,serGps,"GPGGAPL",serE5Mini)
             
-            mPL.readSensorData(canareeOnline,serCanaree,"IPS7100CNR",serE5Mini)
-            mintsBCConcatSend08(serE5Mini)
-            mPL.readSensorDataRG15(rainOnline,serRain,"RG15",serE5Mini)
+            # mPL.readSensorData(canareeOnline,serCanaree,"IPS7100CNR",serE5Mini)
+            # mintsBCConcatSend08(serE5Mini)
+            # mPL.readSensorDataRG15(rainOnline,serRain,"RG15",serE5Mini)
 
 
         except Exception as e:

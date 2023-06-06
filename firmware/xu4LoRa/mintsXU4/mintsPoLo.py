@@ -17,8 +17,8 @@ import struct
 import numpy as np
 
 loRaE5MiniPorts     = mD.loRaE5MiniPorts
-canareePorts        = mD.canareePorts
-gpsPorts            = mD.gpsPorts
+# canareePorts        = mD.canareePorts
+# gpsPorts            = mD.gpsPorts
 appKey              = mD.appKey
 macAddress          = mD.macAddress
 fPortIDs            = mD.fPortIDs
@@ -78,7 +78,7 @@ def getRG15Port(portsIn,indexIn,baudRateIn):
     return availabilty,serPort;
 
 
-def readingDeviceProperties(macAddress,loRaE5MiniPorts,canareePorts,gpsPorts):
+def readingDeviceProperties(macAddress,loRaE5MiniPorts,ips7100Ports,gpsPorts):
     
     print("Mac Address: {0}".format(macAddress))
     print()
@@ -86,13 +86,13 @@ def readingDeviceProperties(macAddress,loRaE5MiniPorts,canareePorts,gpsPorts):
     for dev in loRaE5MiniPorts:
         print("\t{0}".format(dev))
     
-    print("Canaree Ports:")
-    for dev in canareePorts:
+    print("IPS7100 Ports:")
+    for dev in ips7100Ports:
         print("\t{0}".format(dev))
     
-    print("GPS Ports:")
-    for dev in gpsPorts:
-        print("\t{0}".format(dev))
+    # print("GPS Ports:")
+    # for dev in gpsPorts:
+    #     print("\t{0}".format(dev))
 
     return;
 
