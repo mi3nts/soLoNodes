@@ -28,6 +28,7 @@ import shutil
 #import SI1132
 from mintsI2c.i2c_scd30 import SCD30
 from mintsI2c.i2c_as7265x import AS7265X
+from mintsI2c.i2c_bme280 import BME280
 import math
 import sys
 import time
@@ -40,6 +41,7 @@ debug  = False
 
 bus     = smbus2.SMBus(0)
 scd30   = SCD30(bus,debug)
+bme280  = BME280(bus,debug)
 as7265x = AS7265X(bus,debug)
 
 loRaE5MiniPorts     = mD.loRaE5MiniPorts
@@ -72,6 +74,7 @@ if __name__ == "__main__":
 
     # I2C Devices 
     scd30Online    = scd30.initiate(30)
+    bme280Online   = bme280.initiate(30)
     as7265xOnline  = as7265x.initiate()
     joined = True
     print("Hello MINTS")
@@ -85,6 +88,13 @@ if __name__ == "__main__":
             sensorData  =  as7265x.read()
             print(sensorData)
             time.sleep(2)
+
+        if bme280Online:
+            sensorData  =  bme280.read()
+            print(sensorData)
+            time.sleep(2)
+
+
         time.sleep(6)
         
         
