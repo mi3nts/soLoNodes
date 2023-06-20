@@ -44,7 +44,7 @@ loRaE5MiniPorts     = mD.loRaE5MiniPorts
 ips7100Ports        = mD.ips7100Ports
 # canareePorts        = mD.canareePorts
 # gpsPorts            = mD.gpsPorts
-# rainPorts           = mD.rainPorts 
+rainPorts           = mD.rainPorts 
 
 appKey              = mD.appKey
 macAddress          = mD.macAddress
@@ -152,7 +152,7 @@ if __name__ == "__main__":
     ips7100Online,serIPS7100 = mPL.getPort(ips7100Ports,0,115200)
     # gpsOnline,serGps         = mPL.getPort(gpsPorts,0,115200)
     
-    # rainOnline,serRain       = mPL.getRG15Port(rainPorts,0,9600)
+    rainOnline,serRain       = mPL.getRG15Port(rainPorts,0,9600)
     # 
 
     # I2C Devices 
