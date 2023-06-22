@@ -1,11 +1,18 @@
 from ina219 import INA219
 from ina219 import DeviceRangeError
+import odroid_wiringpi as wpi
+wpi.wiringPiSetup()
+
+
 
 SHUNT_OHMS = 0.1
 MAX_EXPECTED_AMPS = 0.2
 
 
 def read():
+
+    batteryLevelRaw = wpi.analogRead(29)
+    print(batteryLevelRaw)
     ina = INA219(SHUNT_OHMS, busnum=1)
     ina.configure()
 
