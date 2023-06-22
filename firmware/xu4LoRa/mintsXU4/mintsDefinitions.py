@@ -80,8 +80,7 @@ appKey                   = keys['appKey']
 tlsCert                   = mintsDefinitions['tlsCert']
 
 loRaE5MiniPorts          = findPorts("CP2102N USB to UART Bridge Controller","PID=10C4:EA60")
-# canareePorts             = findPorts("Canaree PM","PID=10C4:EA60")
-# gpsPorts                 = findPortsGPS("u-blox")
+
 ips7100Ports               = ['/dev/ttyS1']
     
 rainPorts                = ['/dev/ttyS2'] # Direct connected to the gpio port - May not be available on all polo nodes
