@@ -82,14 +82,17 @@ if __name__ == "__main__":
         start_time = time.time()
         if scd30Online:
             sensorData  =  scd30.read()
+            print("SCD30")
             print(sensorData)
 
         if as7265xOnline:
+            print("AS7265X")
             sensorData  =  as7265x.read()
             print(sensorData)
             time.sleep(2)
 
         if bme280Online:
+            print("BME280")
             sensorData  =  bme280.read()
             print(sensorData)
             time.sleep(2)
