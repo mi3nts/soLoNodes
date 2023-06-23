@@ -107,8 +107,6 @@ def mintsBCConcatSend08(serE5MiniIn):
         print(sensorData)
         mPL.readSensorDataBirdSong(sensorData,"MBCLR002",serE5MiniIn)
         
-    
-  
   
 def mintsBCSend(serE5MiniIn,numOfFiles):
     jsonFiles = sorted(glob(jsonFolderName+ "/*.json", recursive = True))
@@ -148,7 +146,6 @@ if __name__ == "__main__":
     
     print("")
     e5MiniOnline,serE5Mini   = mPL.getPort(loRaE5MiniPorts,0,9600)
-    # canareeOnline,serCanaree = mPL.getPort(canareePorts,0,115200)
     ips7100Online,serIPS7100 = mPL.getPort(ips7100Ports,0,115200)
     # gpsOnline,serGps         = mPL.getPort(gpsPorts,0,115200)
     
@@ -168,12 +165,12 @@ if __name__ == "__main__":
     while True:
         try:    
             mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
-            mintsBCConcatSend08(serE5Mini)
+            # mintsBCConcatSend08(serE5Mini)
             # mPL.readSensorData(canareeOnline,serCanaree,"BME688CNR",serE5Mini)
             
             # mPL.readSensorData(canareeOnline,serCanaree,"IPS7100CNR",serE5Mini)
             # mintsBCConcatSend08(serE5Mini)
-            mPL.readSensorDataI2c(scd30Online,scd30,"SCD30",serE5Mini)
+            # mPL.readSensorDataI2c(scd30Online,scd30,"SCD30",serE5Mini)
             
             # mPL.readSensorData(canareeOnline,serCanaree,"IPS7100CNR",serE5Mini)
             # mintsBCConcatSend08(serE5Mini)
