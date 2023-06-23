@@ -165,12 +165,11 @@ if __name__ == "__main__":
     while True:
         try:    
             mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
-            # mintsBCConcatSend08(serE5Mini)
+            mintsBCConcatSend08(serE5Mini)
             # mPL.readSensorData(canareeOnline,serCanaree,"BME688CNR",serE5Mini)
             
-            # mPL.readSensorData(canareeOnline,serCanaree,"IPS7100CNR",serE5Mini)
-            # mintsBCConcatSend08(serE5Mini)
-            # mPL.readSensorDataI2c(scd30Online,scd30,"SCD30",serE5Mini)
+            mintsBCConcatSend08(serE5Mini)
+            mPL.readSensorDataI2c(scd30Online,scd30,"SCD30",serE5Mini)
             
             # mPL.readSensorData(canareeOnline,serCanaree,"IPS7100CNR",serE5Mini)
             # mintsBCConcatSend08(serE5Mini)

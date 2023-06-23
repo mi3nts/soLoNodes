@@ -1,5 +1,3 @@
-# # 
-# Firmware adapted from https://github.com/RequestForCoffee/scd30
 import datetime
 from datetime import timedelta
 import logging
@@ -7,7 +5,7 @@ import smbus2
 import struct
 import time
 import bme280
-
+import math
 
 # to_s16 = lambda x: (x + 2**15) % 2**16 - 2**15
 # to_u16 = lambda x: x % 2**16
@@ -46,15 +44,24 @@ class BME280:
     def read(self):
         measurement = bme280.sample(self.i2c, self.i2c_addr, self.calibration_params)
         if measurement is not None:
-            # print("Temperature: {:.2f}'C, Pressure: {:.2f}'C, Relative Humidity: {:.2f}%".format(measurement.temperature,measurement.pressure,measurement.humidity))
+            temperature = measurement.temperature
+            pressure    = measurement.pressure
+            humidity    = measurement.humidity
+            
+            print("Temperature: {:.2f}'C, Pressure: {:.2f}'C, Relative Humidity: {:.2f}%".format(measurement.temperature,measurement.pressure,measurement.humidity))
             dateTime = datetime.datetime.now() 
-            A = (100*measurement.pressure) / 101325;
+            A = (100*pressure) / 101325;
             B = 1 / 5.25588
             C = pow(A, B)
             C = 1.0 - C
             altitude = C / 0.0000225577
+            dewPoint = 243.04 * (math.log(humidity/100.0) + ((17.625 * temperature)/(243.04 + temperature)))/(17.625 - math.log(humidity/100.0) - ((17.625 * temperature)/(243.04 + temperature)));
             time.sleep(1)
-            return [measurement.temperature,100*measurement.pressure,measurement.humidity,altitude];
+            
+            # Units temperature C, Pressure milliBar, Humidity %, Altitude m
+
+            return [temperature,pressure,humidity,dewPoint,altitude];
+        
         else:
             time.sleep(1)
             return [];
