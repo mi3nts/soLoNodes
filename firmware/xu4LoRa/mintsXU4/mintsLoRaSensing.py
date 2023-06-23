@@ -612,7 +612,6 @@ def sensingIPS7100(dataIn,transmitReceive):
     try:
         if (transmitReceive):  
             print("IPS7100 Read")	
-            print(dataIn)
             if (len(dataIn)== 29): 
                 strOut  = \
                     np.uint32(dataIn[1]).tobytes().hex().zfill(8)+ \
