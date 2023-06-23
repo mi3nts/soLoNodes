@@ -74,7 +74,6 @@ def encodeDecode(sensorID,sensorData,transmitReceive):
     # print("Encode Decode")
     if sensorID == "IPS7100":
         return sensingIPS7100(sensorData,transmitReceive);
-
     if sensorID == "IPS7100CNR":
         return sensingIPS7100CNR(sensorData,transmitReceive);
     if sensorID == "BME688CNR":
@@ -512,7 +511,7 @@ def sensingBME280V2(dataIn,transmitReceive):
                 return strOut;  
             else:
                 print("Invalid data string read from the BME280")
-                
+
                 return None;
 
         else:
