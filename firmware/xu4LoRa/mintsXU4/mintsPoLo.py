@@ -366,7 +366,6 @@ def readSensorData(online,serPort,sensorID,serPortE5):
             port = deriveSensorStats(sensorID)
             if port['portID']<255:
                 sensorData = readSerialLine(serPort,2,port['numOfParametors'])
-                print(sensorData)
                 if (sensorData is not None): 
                 	sendCommandHex(serPortE5,sensorID,sensorData,port)
                 	return;
