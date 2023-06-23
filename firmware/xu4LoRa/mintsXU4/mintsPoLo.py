@@ -24,8 +24,6 @@ macAddress          = mD.macAddress
 fPortIDs            = mD.fPortIDs
 receiveTransmit     = True
 
- 
-
 
 def deriveSensorStats(sensorID):
     for port in fPortIDs:
@@ -444,6 +442,6 @@ def readSensorDataI2c(online,i2cObject,sensorID,serPortE5):
         time.sleep(.5)
         print ("Error and type: %s - %s." % (e,type(e)))
         time.sleep(.5)
-        print("Data Packet Not Sent for IPS7100CNR")
+        print("Data Packet Not Sent for "+ sensorID)
         time.sleep(.5)
         return;

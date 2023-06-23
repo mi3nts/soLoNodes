@@ -26,7 +26,8 @@ import pynmea2
 import shutil
 
 #import SI1132
-from mintsI2c.i2c_scd30 import SCD30
+from mintsI2c.i2c_bme280  import BME280
+from mintsI2c.i2c_scd30   import SCD30
 from mintsI2c.i2c_as7265x import AS7265X
 import math
 import sys
@@ -38,6 +39,8 @@ debug  = False
 
 bus     = smbus2.SMBus(0)
 scd30   = SCD30(bus,debug)
+bme280  = BME280(bus,debug)
+
 as7265x = AS7265X(bus,debug)
 
 loRaE5MiniPorts     = mD.loRaE5MiniPorts
@@ -154,6 +157,7 @@ if __name__ == "__main__":
 
     # I2C Devices 
     scd30Online    = scd30.initiate(30)
+    bme280Online   = bme280.initiate(30)
     as7265xOnline  = as7265x.initiate()
     
 
@@ -166,11 +170,17 @@ if __name__ == "__main__":
         try:    
             mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
             mintsBCConcatSend08(serE5Mini)
-            # mPL.readSensorData(canareeOnline,serCanaree,"BME688CNR",serE5Mini)
+            mPL.readSensorDataI2c(bme280Online,bme280,"BME280V2",serE5Mini)
             
+            mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
             mintsBCConcatSend08(serE5Mini)
             mPL.readSensorDataI2c(scd30Online,scd30,"SCD30",serE5Mini)
             
+            mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
+            mintsBCConcatSend08(serE5Mini)
+            mPL.readSensorDataI2c(as7265xOnline,as7265x,"AS7265X",serE5Mini)
+                        
+
             # mPL.readSensorData(canareeOnline,serCanaree,"IPS7100CNR",serE5Mini)
             # mintsBCConcatSend08(serE5Mini)
             # mPL.readSensorDataGPS(gpsOnline,serGps,"GPRMCPL",serE5Mini)        

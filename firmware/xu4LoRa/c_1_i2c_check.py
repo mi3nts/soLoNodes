@@ -76,6 +76,7 @@ if __name__ == "__main__":
     scd30Online    = scd30.initiate(30)
     bme280Online   = bme280.initiate(30)
     as7265xOnline  = as7265x.initiate()
+    
     joined = True
     print("Hello MINTS")
     while joined:
