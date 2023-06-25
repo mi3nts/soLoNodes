@@ -7,8 +7,6 @@ import time
 import bme280
 import math
 import time
-import smbus
-import time
 from pa1010d import PA1010D
 
 class PAI101D_:
