@@ -153,9 +153,8 @@ if __name__ == "__main__":
     print("")
     e5MiniOnline,serE5Mini   = mPL.getPort(loRaE5MiniPorts,0,9600)
     ips7100Online,serIPS7100 = mPL.getPort(ips7100Ports,0,115200)
-    # gpsOnline,serGps         = mPL.getPort(gpsPorts,0,115200)
     
-    rainOnline,serRain       = mPL.getRG15Port(rainPorts,0,9600)
+    # rainOnline,serRain       = mPL.getRG15Port(rainPorts,0,9600)
     # 
 
     # I2C Devices 

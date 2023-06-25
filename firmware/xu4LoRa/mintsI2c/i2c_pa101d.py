@@ -22,6 +22,8 @@ class PAI101D_:
             result = self.gps.update()
             print(result)
 
+            print(self.gps.data)
+
             print("Reading only RMC and GGA Commands")
             self.gps.send_command("PMTK314,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0")
 
