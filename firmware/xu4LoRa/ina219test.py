@@ -13,7 +13,7 @@ def read():
 
     batteryLevelRaw = wpi.analogRead(29)
     print(batteryLevelRaw)
-    ina = INA219(SHUNT_OHMS, busnum=1)
+    ina = INA219(SHUNT_OHMS, busnum=2)
     ina.configure()
     print("Adafruit_GPIO.I2C" in str(ina._i2c))
 
