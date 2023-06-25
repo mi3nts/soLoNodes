@@ -29,6 +29,7 @@ import shutil
 from mintsI2c.i2c_bme280  import BME280
 from mintsI2c.i2c_scd30   import SCD30
 from mintsI2c.i2c_as7265x import AS7265X
+from mintsI2c.i2c_pa101d  import PAI101D_
 import math
 import sys
 import time
@@ -38,10 +39,12 @@ import smbus2
 debug  = False 
 
 bus     = smbus2.SMBus(0)
+
 scd30   = SCD30(bus,debug)
 bme280  = BME280(bus,debug)
-
 as7265x = AS7265X(bus,debug)
+pa101d  = PAI101D_(bus,debug)
+
 
 loRaE5MiniPorts     = mD.loRaE5MiniPorts
 ips7100Ports        = mD.ips7100Ports
@@ -159,6 +162,7 @@ if __name__ == "__main__":
     scd30Online    = scd30.initiate(30)
     bme280Online   = bme280.initiate(30)
     as7265xOnline  = as7265x.initiate()
+    pa101dOnline   = pa101d.initiate()
     
 
     while not mPL.loRaE5MiniJoin(e5MiniOnline,serE5Mini):
@@ -168,21 +172,21 @@ if __name__ == "__main__":
    
     while True:
         try:    
-            mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
-            mintsBCConcatSend08(serE5Mini)
-            mPL.readSensorDataI2c(bme280Online,bme280,"BME280V2",serE5Mini)
+            # mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
+            # mintsBCConcatSend08(serE5Mini)
+            # mPL.readSensorDataI2c(bme280Online,bme280,"BME280V2",serE5Mini)
             
-            mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
-            mintsBCConcatSend08(serE5Mini)
-            mPL.readSensorDataI2c(scd30Online,scd30,"SCD30",serE5Mini)
+            # mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
+            # mintsBCConcatSend08(serE5Mini)
+            # mPL.readSensorDataI2c(scd30Online,scd30,"SCD30",serE5Mini)
             
-            mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
-            mintsBCConcatSend08(serE5Mini)
-            mPL.readSensorDataI2c(as7265xOnline,as7265x,"AS7265X",serE5Mini)
+            # mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
+            # mintsBCConcatSend08(serE5Mini)
+            # mPL.readSensorDataI2c(as7265xOnline,as7265x,"AS7265X",serE5Mini)
     
-            mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
-            mintsBCConcatSend08(serE5Mini)
-            mPL.readSensorDataRG15(rainOnline,serRain,"RG15",serE5Mini)
+            # mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
+            # mintsBCConcatSend08(serE5Mini)
+            # mPL.readSensorDataRG15(rainOnline,serRain,"RG15",serE5Mini)
 
             # mPL.readSensorData(canareeOnline,serCanaree,"IPS7100CNR",serE5Mini)
             # mintsBCConcatSend08(serE5Mini)

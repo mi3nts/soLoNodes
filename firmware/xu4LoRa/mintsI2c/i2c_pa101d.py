@@ -6,40 +6,36 @@ import struct
 import time
 import bme280
 import math
+import time
+import smbus
+import time
+from pa1010d import PA1010D
 
-# to_s16 = lambda x: (x + 2**15) % 2**16 - 2**15
-# to_u16 = lambda x: x % 2**16
-
-BME280_I2C_ADDR = 0x77
-
-class BME280:
+class PAI101D_:
 
     def __init__(self, i2c_dev,debugIn):
         
-        self.i2c_addr = BME280_I2C_ADDR
-        self.i2c      = i2c_dev
-        self.debug    = debugIn
+        self.gps = PA1010D()
+        self.gps._i2c = i2c_dev
 
-    def initiate(self,retriesIn):
-        ready = None
-        while ready is None and retriesIn:
-            try:
-                self.calibration_params = bme280.load_calibration_params(self.i2c, self.i2c_addr)
-                ready = True
-                
-            except OSError:
-                pass
-            time.sleep(1)
-            retriesIn -= 1
+    def initiate(self):
+        try:
+            ready = None
+            result = self.gps.update()
+            print(result)
 
-        if not retriesIn:
+            print("Reading only RMC and GGA Commands")
+            self.gps.send_command("PMTK314,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0")
+
+            print("Sending to Power Save Mode")
+            self.gps.send_command("$PMTK161,0*28")
+
             time.sleep(1)
+            return True   
+        except OSError:
             return False
-        
-        else:
-            print("BME 280 Found - Calibraion Params Set")
-            time.sleep(1)
-            return True       
+            pass
+    
       
     def read(self):
         measurement = bme280.sample(self.i2c, self.i2c_addr, self.calibration_params)
@@ -47,8 +43,6 @@ class BME280:
             temperature = measurement.temperature
             pressure    = measurement.pressure
             humidity    = measurement.humidity
-            
-            # print("Temperature: {:.2f}'C, Pressure: {:.2f}'C, Relative Humidity: {:.2f}%".format(measurement.temperature,measurement.pressure,measurement.humidity))
             A = (100*pressure) / 101325;
             B = 1 / 5.25588
             C = pow(A, B)
