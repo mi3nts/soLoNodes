@@ -20,7 +20,8 @@ class PAI101D_:
     def initiate(self):
         try:
             print(self.gps.gps_qual)
-            self.gps.update(timeout=5)
+            self.gps.update(timeout=.00005)
+            time.sleep(1)
             print("------")
             print(self.gps.gps_qual)
             print(self.gps.gps_qual is not None)
