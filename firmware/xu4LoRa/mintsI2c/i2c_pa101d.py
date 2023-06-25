@@ -20,8 +20,10 @@ class PAI101D_:
     def initiate(self):
         try:
             print(self.gps.gps_qual)
-            self.gps.update(timeout=5)
+            self.gps.update(timeout=.001)
             print(self.gps.gps_qual)
+            print(self.gps.gps_qual)
+
 
             print("Reading only RMC and GGA Commands")
             self.gps.send_command("PMTK314,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0")
