@@ -15,7 +15,7 @@ def read():
     print(batteryLevelRaw)
     ina = INA219(SHUNT_OHMS, busnum=1)
     ina.configure()
-    print(ina._i2c)
+    print(str(ina._i2c))
 
     ina2 = INA219(SHUNT_OHMS, address=0x41, busnum=1)
     ina2.configure()
