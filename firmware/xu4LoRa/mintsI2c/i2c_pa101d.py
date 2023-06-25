@@ -57,6 +57,7 @@ class PAI101D_:
 
 
     def readSentence(self,strExpected, timeOut=2):
+        print("Setting PA101D to normal")
         self.gps.send_command("$PMTK225,0*2B")
         timeOut += time.time()
         while time.time() < timeOut:
@@ -65,9 +66,8 @@ class PAI101D_:
                 if sentence.find(strExpected) >0:
                     self.gps.send_command("$PMTK161,0*28")
                     return sentence;                
-                print(sentence)
             except TimeoutError:
                 continue
-
+        print("Setting PA101D to low power mode")
         self.gps.send_command("$PMTK161,0*28")
         return;
