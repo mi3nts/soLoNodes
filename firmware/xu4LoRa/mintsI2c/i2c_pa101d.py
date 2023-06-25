@@ -58,7 +58,7 @@ class PAI101D_:
 
     def readSentence(self,strExpected, timeOut=2):
         self.gps.send_command("$PMTK225,0*2B")
-        timeout += time.time()
+        timeOut += time.time()
         while time.time() < timeOut:
             try:
                 sentence = self.read_sentence()
