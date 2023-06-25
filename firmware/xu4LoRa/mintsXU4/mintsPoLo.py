@@ -287,9 +287,6 @@ def readSerialLine(serIn,timeOutSensor,sizeExpected):
                         line = []
     return;
 
-
-
-
 def sendCommandHex(serPortE5,sensorID,sensorData,port):
     try:
         hexString = mLS.encodeDecode(sensorID,sensorData,receiveTransmit)
