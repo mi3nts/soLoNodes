@@ -19,49 +19,21 @@ class PAI101D_:
 
     def initiate(self):
         try:
-            print(self.gps.gps_qual)
-            self.gps.update(timeout=.00005)
             time.sleep(1)
-            print("------")
-            print(self.gps.gps_qual)
-            print(self.gps.gps_qual is not None)
-            print("------")
-            
 
+            self.gps.update(timeout=5)
 
             print("Reading only RMC and GGA Commands")
             self.gps.send_command("PMTK314,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0")
 
             print("Sending to Power Save Mode")
             self.gps.send_command("$PMTK161,0*28")
-
             time.sleep(1)
-            return
+
+            return self.gps.gps_qual is not None;
         except OSError:
             return False
             pass
-    
-    # def read(self):
-    #     measurement = bme280.sample(self.i2c, self.i2c_addr, self.calibration_params)
-    #     if measurement is not None:
-    #         temperature = measurement.temperature
-    #         pressure    = measurement.pressure
-    #         humidity    = measurement.humidity
-    #         A = (100*pressure) / 101325;
-    #         B = 1 / 5.25588
-    #         C = pow(A, B)
-    #         C = 1.0 - C
-    #         altitude = C / 0.0000225577
-    #         dewPoint = 243.04 * (math.log(humidity/100.0) + ((17.625 * temperature)/(243.04 + temperature)))/(17.625 - math.log(humidity/100.0) - ((17.625 * temperature)/(243.04 + temperature)));
-    #         time.sleep(1)
-    #         # Units temperature C, Pressure milliBar, Humidity %, Altitude m
-    #         return [temperature,pressure,humidity,dewPoint,altitude];
-        
-    #     else:
-    #         time.sleep(1)
-    #         print("BME280 Measurments not read")
-    #         return [];
-
 
     def readSentence(self,strExpected, timeOut=2):
         print("Setting PA101D to normal")

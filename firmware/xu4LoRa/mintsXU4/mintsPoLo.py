@@ -336,18 +336,11 @@ def readSensorDataGPSI2C(online,i2cSensor,sensorID,serPortE5):
             port = deriveSensorStats(sensorID)
             if port['portID']==106:
                 sensorData = i2cSensor.readSentence("GGA")
-                print(" -- ")
-                print(sensorData)
-                print(" -- ")
-                # sendCommandHex(serPortE5,sensorID,sensorData,port)  
+                sendCommandHex(serPortE5,sensorID,sensorData,port)  
                 return;          
             if port['portID']==107:
                 sensorData = i2cSensor.readSentence("RMC")
-                print(" -- ")
-                print(sensorData)
-                print(" -- ")
-                # Add an if statement 
-                # sendCommandHex(serPortE5,sensorID,sensorData,port)
+                sendCommandHex(serPortE5,sensorID,sensorData,port)
                 return;
         else:
             print(sensorID + " Offline")       
