@@ -61,7 +61,7 @@ class PAI101D_:
         timeOut += time.time()
         while time.time() < timeOut:
             try:
-                sentence = self.read_sentence()
+                sentence = self.gps.read_sentence()
                 if sentence.find(strExpected) >0:
                     self.gps.send_command("$PMTK161,0*28")
                     return sentence;                
