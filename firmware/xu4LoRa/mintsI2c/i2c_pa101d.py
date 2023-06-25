@@ -21,8 +21,10 @@ class PAI101D_:
         try:
             print(self.gps.gps_qual)
             self.gps.update(timeout=.001)
+            print("------")
             print(self.gps.gps_qual)
-            print(self.gps.gps_qual)
+            print("------")
+            
 
 
             print("Reading only RMC and GGA Commands")
