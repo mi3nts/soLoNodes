@@ -174,7 +174,16 @@ if __name__ == "__main__":
             mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
             mintsBCConcatSend08(serE5Mini)
             mPL.readSensorDataI2c(bme280Online,bme280,"BME280V2",serE5Mini)
-            
+
+            mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
+            mintsBCConcatSend08(serE5Mini)
+            mPL.readSensorDataGPSI2C(pa101dOnline,pa101d,"GPGGAPL",serE5Mini)
+
+            mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
+            mintsBCConcatSend08(serE5Mini)
+            mPL.readSensorDataGPSI2C(pa101dOnline,pa101d,"GPRMCPL",serE5Mini)
+
+
             # mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
             # mintsBCConcatSend08(serE5Mini)
             # mPL.readSensorDataI2c(scd30Online,scd30,"SCD30",serE5Mini)

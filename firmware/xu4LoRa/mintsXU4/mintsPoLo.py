@@ -326,6 +326,39 @@ def readSensorDataBirdSong(sensorData,sensorID,serPortE5):
         time.sleep(.5)
         return;
 
+def readSensorDataGPSI2C(online,i2cSensor,sensorID,serPortE5):
+    try:
+        print("====================================")  
+        print("-----------" +sensorID+ "-----------" ) 
+        print("Current Time (UTC): " +str(datetime.now()))
+        if online:
+            print(sensorID + " Online") 
+            port = deriveSensorStats(sensorID)
+            if port['portID']==106:
+                sensorData = i2cSensor.readSentence("GGA")
+                print(sensorData)
+                # sendCommandHex(serPortE5,sensorID,sensorData,port)  
+                return;          
+            if port['portID']==107:
+                sensorData = i2cSensor.readSentence("RMC")
+                print(sensorData)
+                # Add an if statement 
+                # sendCommandHex(serPortE5,sensorID,sensorData,port)
+                return;
+        else:
+            print(sensorID + " Offline")       
+            return;
+    except Exception as e:
+        time.sleep(.5)
+        print ("Error and type: %s - %s." % (e,type(e)))
+        time.sleep(.5)
+        print("Data Packet Not Sent for IPS7100CNR")
+        time.sleep(.5)
+        return;
+
+
+
+
 def readSensorDataGPS(online,serPort,sensorID,serPortE5):
     try:
         print("====================================")  
