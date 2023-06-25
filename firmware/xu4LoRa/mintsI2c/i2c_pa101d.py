@@ -14,18 +14,20 @@ class PAI101D_:
 
     def __init__(self, i2c_dev,debugIn):
         
-        self.gps = PA1010D()
+        self.gps = PA1010D(debug= debugIn)
         self.gps._i2c = i2c_dev
 
     def initiate(self):
         try:
-            result = self.gps.update(timeout=.2)
-            print(result)
+            print(self.gps.gps_qual)
+            self.gps.update(timeout=5)
+            print(self.gps.gps_qual)
+
             print("Reading only RMC and GGA Commands")
-            print(self.gps.send_command("PMTK314,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"))
+            self.gps.send_command("PMTK314,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0")
 
             print("Sending to Power Save Mode")
-            print(self.gps.send_command("$PMTK161,0*28"))
+            self.gps.send_command("$PMTK161,0*28")
 
             time.sleep(1)
             return
