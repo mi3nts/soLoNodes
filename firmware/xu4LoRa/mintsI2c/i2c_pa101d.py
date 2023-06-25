@@ -19,7 +19,6 @@ class PAI101D_:
 
     def initiate(self):
         try:
-            ready = None
             result = self.gps.update(timeout=.2)
             print(result)
             print("Reading only RMC and GGA Commands")
@@ -29,7 +28,7 @@ class PAI101D_:
             print(self.gps.send_command("$PMTK161,0*28"))
 
             time.sleep(1)
-            return True   
+            return
         except OSError:
             return False
             pass
