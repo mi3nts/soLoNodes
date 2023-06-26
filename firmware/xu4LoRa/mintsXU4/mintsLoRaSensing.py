@@ -556,9 +556,9 @@ def sensingBME280V2(dataIn,transmitReceive):
                 strOut  = \
                     np.float32(dataIn[0]).tobytes().hex().zfill(8) + \
                     np.float32(dataIn[1]).tobytes().hex().zfill(8) + \
+                    np.float32(dataIn[2]).tobytes().hex().zfill(8) + \
                     np.float32(dataIn[3]).tobytes().hex().zfill(8) + \
-                    np.float32(dataIn[4]).tobytes().hex().zfill(8) + \
-                    np.float32(dataIn[5]).tobytes().hex().zfill(8)
+                    np.float32(dataIn[4]).tobytes().hex().zfill(8)
                 return strOut;  
             else:
                 print("Invalid data string read from the BME280")
