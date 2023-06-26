@@ -44,6 +44,7 @@ class MBLSL001:
                 self.inaSolarOut.configure()
                 self.inaBatteryOut.configure()
                 print("Initiated MBLS001")
+                
                 return True;
         except Exception as e:
             time.sleep(.5)

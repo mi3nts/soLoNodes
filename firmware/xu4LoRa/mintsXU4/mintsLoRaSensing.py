@@ -100,6 +100,8 @@ def encodeDecode(sensorID,sensorData,transmitReceive):
         return sensingMBCLR002(sensorData,transmitReceive);  
     if sensorID == "RG15":
         return sensingRG15(sensorData,transmitReceive);  
+    if sensorID == "MBLS001":
+        return sensingRG15(sensorData,transmitReceive);  
 
     return;   
 
@@ -503,7 +505,7 @@ def sensingMBLS001(dataIn,transmitReceive):
     try:
         if (transmitReceive): 
             print("MBLS001 Read")	
-            
+
             if (len(dataIn)==10):
                 strOut  = \
                      np.uint16(dataIn[0]).tobytes().hex().zfill(4) + \
