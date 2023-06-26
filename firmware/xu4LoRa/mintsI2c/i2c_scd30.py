@@ -50,14 +50,14 @@ class SCD30:
 
         if not retriesIn:
             time.sleep(1)
-            return False
+            return False;
         else:
             self.get_firmware_version()
-            self.set_measurement_interval(5)
+            self.set_measurement_interval(15)
             self.set_auto_self_calibration(active=False)
             self.start_periodic_measurement()
             time.sleep(1)
-            return True 
+            return True ;
     
     def read(self):
         if self.get_data_ready():
@@ -69,8 +69,9 @@ class SCD30:
                 return [co2,temp,rh];
             else:
                 time.sleep(1)
-                return;
                 print("SCD30 Measurments not read")    
+                return;
+
         else:
             time.sleep(1)
             print("SCD30 Not Ready")

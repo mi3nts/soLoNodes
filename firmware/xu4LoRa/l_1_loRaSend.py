@@ -26,10 +26,12 @@ import pynmea2
 import shutil
 
 #import SI1132
-from mintsI2c.i2c_bme280  import BME280
-from mintsI2c.i2c_scd30   import SCD30
-from mintsI2c.i2c_as7265x import AS7265X
-from mintsI2c.i2c_pa101d  import PAI101D_
+from mintsI2c.i2c_bme280   import BME280
+from mintsI2c.i2c_scd30    import SCD30
+from mintsI2c.i2c_as7265x  import AS7265X
+from mintsI2c.i2c_pa101d   import PAI101D_
+from mintsI2c.i2c_mblsl001 import MBLSL001
+
 import math
 import sys
 import time
@@ -44,6 +46,7 @@ scd30   = SCD30(bus,debug)
 bme280  = BME280(bus,debug)
 as7265x = AS7265X(bus,debug)
 pa101d  = PAI101D_(bus,debug)
+mbls001 = MBLSL001(busNum=1,pinNum=29,resistorGround=727.5,resisterHigh=242.5)
 
 
 loRaE5MiniPorts     = mD.loRaE5MiniPorts
@@ -55,7 +58,6 @@ rainPorts           = mD.rainPorts
 appKey              = mD.appKey
 macAddress          = mD.macAddress
 jsonFolderName      = mD.dataFolderJson
-
 
 def getLatitudeCords(latitudeStr,latitudeDirection):
     latitude = float(latitudeStr)
@@ -153,27 +155,25 @@ if __name__ == "__main__":
     print("")
     e5MiniOnline,serE5Mini   = mPL.getPort(loRaE5MiniPorts,0,9600)
     ips7100Online,serIPS7100 = mPL.getPort(ips7100Ports,0,115200)
+    rainOnline,serRain       = mPL.getRG15Port(rainPorts,0,9600)
     
-    # rainOnline,serRain       = mPL.getRG15Port(rainPorts,0,9600)
-    # 
-
     # I2C Devices 
-    scd30Online    = scd30.initiate(30)
-    bme280Online   = bme280.initiate(30)
-    as7265xOnline  = as7265x.initiate()
-    pa101dOnline   = pa101d.initiate()
+    scd30Online    =  scd30.initiate(30)
+    bme280Online   =  bme280.initiate(30)
+    as7265xOnline  =  as7265x.initiate()
+    pa101dOnline   =  pa101d.initiate()
+    mbls001Onlune  =  mbls001.initiate()
     
-
     while not mPL.loRaE5MiniJoin(e5MiniOnline,serE5Mini):
       print("Trying to connect")
       time.sleep(5)
-      
-   
+    
     while True:
         try:    
-            # mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
-            # mintsBCConcatSend08(serE5Mini)
+            mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
+            mintsBCConcatSend08(serE5Mini)
             # mPL.readSensorDataI2c(bme280Online,bme280,"BME280V2",serE5Mini)
+            mPL.readSensorDataI2c(mbls001Onlune,mbls001,"MBLS001",serE5Mini)
 
             mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
             mintsBCConcatSend08(serE5Mini)

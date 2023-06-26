@@ -1,8 +1,8 @@
 from ina219 import INA219
 from ina219 import DeviceRangeError
 import odroid_wiringpi as wpi
-wpi.wiringPiSetup()
 
+wpi.wiringPiSetup()
 import time
 
 SHUNT_OHMS = 0.1
@@ -20,19 +20,16 @@ def read():
 
         inaSolarOut.configure()
         inaBatteryOut.configure()
-    
 
+        print("Bus Voltage   : %.3f V" % inaSolarOut.voltage())
+        print("Bus Current   : %.3f mA" % inaSolarOut.current())
+        print("Power         : %.3f mW" % inaSolarOut.power())
+        print("Shunt voltage : %.3f mV" % inaSolarOut.shunt_voltage())
 
-        print("Bus Voltage: %.3f V" % inaSolarOut.voltage())
-        print("Bus Current: %.3f mA" % inaSolarOut.current())
-        print("Power: %.3f mW" % inaSolarOut.power())
-        print("Shunt voltage: %.3f mV" % inaSolarOut.shunt_voltage())
-
-
-        print("Bus Voltage: %.3f V" % inaBatteryOut.voltage())
-        print("Bus Current: %.3f mA" % inaBatteryOut.current())
-        print("Power: %.3f mW" % inaBatteryOut.power())
-        print("Shunt voltage: %.3f mV" % inaBatteryOut.shunt_voltage())
+        print("Bus Voltage   : %.3f V" % inaBatteryOut.voltage())
+        print("Bus Current   : %.3f mA" % inaBatteryOut.current())
+        print("Power         : %.3f mW" % inaBatteryOut.power())
+        print("Shunt voltage : %.3f mV" % inaBatteryOut.shunt_voltage())
     
     except Exception as e:
         time.sleep(.5)

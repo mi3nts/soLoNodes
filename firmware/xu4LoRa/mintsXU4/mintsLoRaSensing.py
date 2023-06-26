@@ -497,10 +497,51 @@ def sensingAS7265X(dataIn,transmitReceive):
         time.sleep(.5)
         return None
 
+
+
+def sensingMBLS001(dataIn,transmitReceive):
+    try:
+        if (transmitReceive): 
+            print("MBLS001 Read")	
+            if (len(dataIn)==10):
+                strOut  = \
+                    np.uint16(dataIn[0]).tobytes().hex().zfill(4) + \
+                    np.float32(dataIn[1]).tobytes().hex().zfill(8) + \
+                    np.float32(dataIn[2]).tobytes().hex().zfill(8) + \
+                    np.float32(dataIn[3]).tobytes().hex().zfill(8) + \
+                    np.float32(dataIn[4]).tobytes().hex().zfill(8) + \
+                    np.float32(dataIn[5]).tobytes().hex().zfill(8) + \
+                    np.float32(dataIn[6]).tobytes().hex().zfill(8) + \
+                    np.float32(dataIn[7]).tobytes().hex().zfill(8) + \
+                    np.float32(dataIn[8]).tobytes().hex().zfill(8) + \
+                    np.float32(dataIn[9]).tobytes().hex().zfill(8) 
+                return strOut;  
+            else:
+                print("Invalid data string read from the BME280")
+
+                return None;
+
+        else:
+            dateTime = datetime.datetime.now()
+            sensorDictionary =  OrderedDict([
+                    ("dateTime"            ,str(dateTime)),
+                    ("batteryLevelRaw"     ,struct.unpack('<H',bytes.fromhex(dataIn[0:4]))[0]),
+                    ("cellVoltage"         ,struct.unpack('<f',bytes.fromhex(dataIn[4:12]))[0]),
+                    ("solarVoltage"        ,struct.unpack('<f',bytes.fromhex(dataIn[12:20]))[0]),
+                    ("solarCurrent"        ,struct.unpack('<f',bytes.fromhex(dataIn[20:28]))[0]),
+                    ("solarPower"          ,struct.unpack('<f',bytes.fromhex(dataIn[28:36]))[0]),
+                    ("solarShuntVoltage"   ,struct.unpack('<f',bytes.fromhex(dataIn[36:44]))[0]), 
+                    ("batteryVoltage"      ,struct.unpack('<f',bytes.fromhex(dataIn[44:52]))[0]),
+                    ("batteryCurrent"      ,struct.unpack('<f',bytes.fromhex(dataIn[52:60]))[0]),
+                    ("batteryPower"        ,struct.unpack('<f',bytes.fromhex(dataIn[60:68]))[0]),
+                    ("batteryShuntVoltage" ,struct.unpack('<f',bytes.fromhex(dataIn[68:76]))[0])
+            ])
+            return sensorDictionary;
+
 def sensingBME280V2(dataIn,transmitReceive):
     try:
         if (transmitReceive): 
-            print("BME280 Read")	
+            print("BME280V2 Read")	
             if (len(dataIn)==5):
                 strOut  = \
                     np.float32(dataIn[0]).tobytes().hex().zfill(8) + \
