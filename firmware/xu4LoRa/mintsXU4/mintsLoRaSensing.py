@@ -537,11 +537,18 @@ def sensingMBLS001(dataIn,transmitReceive):
                     ("batteryShuntVoltage" ,struct.unpack('<f',bytes.fromhex(dataIn[68:76]))[0])
             ])
             return sensorDictionary;
+    except Exception as e:
+        time.sleep(.5)
+        print ("Error and type: %s - %s." % (e,type(e)))
+        time.sleep(.5)
+        print("Data Packet Not Sent for MBLS001")
+        time.sleep(.5)
+        return None
 
 def sensingBME280V2(dataIn,transmitReceive):
     try:
         if (transmitReceive): 
-            print("BME280V2 Read")	
+            print("BME280 Read")	
             if (len(dataIn)==5):
                 strOut  = \
                     np.float32(dataIn[0]).tobytes().hex().zfill(8) + \
