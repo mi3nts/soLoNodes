@@ -64,7 +64,7 @@ def getRG15Port(portsIn,indexIn,baudRateIn):
         checkStr  = second[0] + highRes[0] + metric[0]
 
         print("Checking availabilty of the rain sensor")
-        availabilty = "Acc" in checkStr
+        availabilty = "Acc" in str(checkStr)
         
     except Exception as e:
         time.sleep(.5)
