@@ -101,7 +101,7 @@ def encodeDecode(sensorID,sensorData,transmitReceive):
     if sensorID == "RG15":
         return sensingRG15(sensorData,transmitReceive);  
     if sensorID == "MBLS001":
-        return sensingRG15(sensorData,transmitReceive);  
+        return sensingMBLS001(sensorData,transmitReceive);  
 
     return;   
 
