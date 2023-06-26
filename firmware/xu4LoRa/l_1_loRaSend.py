@@ -172,46 +172,31 @@ if __name__ == "__main__":
         try:    
             mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
             mintsBCConcatSend08(serE5Mini)
-            # mPL.readSensorDataI2c(bme280Online,bme280,"BME280V2",serE5Mini)
+            mPL.readSensorDataI2c(bme280Online,bme280,"BME280V2",serE5Mini)
+            
+            mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
+            mintsBCConcatSend08(serE5Mini)
+            mPL.readSensorDataI2c(scd30Online,scd30,"SCD30",serE5Mini)
+            
+            mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
+            mintsBCConcatSend08(serE5Mini)
+            mPL.readSensorDataGPSI2C(pa101dOnline,pa101d,"GPGGAPL",serE5Mini)
+
+            mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
+            mintsBCConcatSend08(serE5Mini)
+            mPL.readSensorDataI2c(as7265xOnline,as7265x,"AS7265X",serE5Mini)
+    
+            mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
+            mintsBCConcatSend08(serE5Mini)
+            mPL.readSensorDataRG15(rainOnline,serRain,"RG15",serE5Mini)
+
+            mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
+            mintsBCConcatSend08(serE5Mini)
             mPL.readSensorDataI2c(mbls001Onlune,mbls001,"MBLS001",serE5Mini)
 
-            # mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
-            # mintsBCConcatSend08(serE5Mini)
-            # mPL.readSensorDataGPSI2C(pa101dOnline,pa101d,"GPGGAPL",serE5Mini)
-
-            # mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
-            # mintsBCConcatSend08(serE5Mini)
-            # mPL.readSensorDataGPSI2C(pa101dOnline,pa101d,"GPRMCPL",serE5Mini)
-
-
-            # mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
-            # mintsBCConcatSend08(serE5Mini)
-            # mPL.readSensorDataI2c(scd30Online,scd30,"SCD30",serE5Mini)
-            
-            # mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
-            # mintsBCConcatSend08(serE5Mini)
-            # mPL.readSensorDataI2c(as7265xOnline,as7265x,"AS7265X",serE5Mini)
-    
-            # mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
-            # mintsBCConcatSend08(serE5Mini)
-            # mPL.readSensorDataRG15(rainOnline,serRain,"RG15",serE5Mini)
-
-            # mPL.readSensorData(canareeOnline,serCanaree,"IPS7100CNR",serE5Mini)
-            # mintsBCConcatSend08(serE5Mini)
-            # mPL.readSensorDataGPS(gpsOnline,serGps,"GPRMCPL",serE5Mini)        
-            
-            # mPL.readSensorData(canareeOnline,serCanaree,"IPS7100CNR",serE5Mini)
-            # mintsBCConcatSend08(serE5Mini)
-            # mPL.readSensorDataI2c(as7265xOnline,as7265x,"AS7265X",serE5Mini)
-            
-            # mPL.readSensorData(canareeOnline,serCanaree,"IPS7100CNR",serE5Mini)
-            # mintsBCConcatSend08(serE5Mini)
-            # mPL.readSensorDataGPS(gpsOnline,serGps,"GPGGAPL",serE5Mini)
-            
-            # mPL.readSensorData(canareeOnline,serCanaree,"IPS7100CNR",serE5Mini)
-            # mintsBCConcatSend08(serE5Mini)
-            # mPL.readSensorDataRG15(rainOnline,serRain,"RG15",serE5Mini)
-
+            mPL.readSensorData(ips7100Online,serIPS7100,"IPS7100",serE5Mini)
+            mintsBCConcatSend08(serE5Mini)
+            mPL.readSensorDataGPSI2C(pa101dOnline,pa101d,"GPRMCPL",serE5Mini)
 
         except Exception as e:
             time.sleep(.5)

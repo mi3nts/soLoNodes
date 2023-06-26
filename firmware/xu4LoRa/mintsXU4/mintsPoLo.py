@@ -457,9 +457,6 @@ def readSensorDataI2c(online,i2cObject,sensorID,serPortE5):
             if port['portID']<255:
                 print("Reading I2C Data")
                 sensorData  =  i2cObject.read()
-                print(sensorData)
-                print(port)
-                
                 sendCommandHex(serPortE5,sensorID,sensorData,port)  
                 return;
         else:
