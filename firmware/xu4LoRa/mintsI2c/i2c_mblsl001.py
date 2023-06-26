@@ -34,7 +34,7 @@ class MBLSL001:
             print("INAs not found")
             time.sleep(.5)
     
-    def initiate(self,retriesIn):
+    def initiate(self):
         time.sleep(1)
         try:
             if "Adafruit_GPIO.I2C" in str(self.inaSolarOut._i2c)\
