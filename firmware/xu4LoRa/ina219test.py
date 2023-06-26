@@ -13,6 +13,7 @@ def read():
     try:
         batteryLevelRaw = wpi.analogRead(29)
         print(batteryLevelRaw)
+
         inaSolarOut   = INA219(SHUNT_OHMS, busnum=1)
         inaBatteryOut = INA219(SHUNT_OHMS, address=0x41, busnum=1)
 

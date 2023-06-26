@@ -503,9 +503,10 @@ def sensingMBLS001(dataIn,transmitReceive):
     try:
         if (transmitReceive): 
             print("MBLS001 Read")	
+            
             if (len(dataIn)==10):
                 strOut  = \
-                    np.uint16(dataIn[0]).tobytes().hex().zfill(4) + \
+                     np.uint16(dataIn[0]).tobytes().hex().zfill(4) + \
                     np.float32(dataIn[1]).tobytes().hex().zfill(8) + \
                     np.float32(dataIn[2]).tobytes().hex().zfill(8) + \
                     np.float32(dataIn[3]).tobytes().hex().zfill(8) + \
@@ -517,7 +518,7 @@ def sensingMBLS001(dataIn,transmitReceive):
                     np.float32(dataIn[9]).tobytes().hex().zfill(8) 
                 return strOut;  
             else:
-                print("Invalid data string read from the BME280")
+                print("Invalid data string read from the MBLS001")
 
                 return None;
 

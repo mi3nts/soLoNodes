@@ -17,7 +17,7 @@ MAX_EXPECTED_AMPS = 0.2
 class MBLSL001:
 
     def __init__(self, busNum,pinNum,resistorGround,resisterHigh):
-        
+        print("Initiating MBLS001")
         self.inaSolarOut    =None
         self.inaBatteryOut  =None
         self.batteryPin     = pinNum
@@ -43,6 +43,7 @@ class MBLSL001:
 
                 self.inaSolarOut.configure()
                 self.inaBatteryOut.configure()
+                print("Initiated MBLS001")
                 return True;
         except Exception as e:
             time.sleep(.5)
@@ -69,8 +70,10 @@ class MBLSL001:
         batteryPower        = self.inaBatteryOut.power()
         batteryShuntVoltage = self.inaBatteryOut.shunt_voltage()        
 
-        return [batteryLevelRaw,cellVoltage,\
+        
+        lk =  [batteryLevelRaw,cellVoltage,\
                 solarVoltage,solarCurrent,solarPower,solarShuntVoltage,\
                 batteryVoltage,batteryCurrent,batteryPower,batteryShuntVoltage];
-
+        print(lk)
+        return lk;
 
