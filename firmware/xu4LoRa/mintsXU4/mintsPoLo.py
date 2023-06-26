@@ -62,7 +62,7 @@ def getRG15Port(portsIn,indexIn,baudRateIn):
         metric  = sendCommand(serPort,'P',1)
 
         checkStr  = second[0] + highRes[0] + metric[0]
-
+        print(checkStr)
         print("Checking availabilty of the rain sensor")
         availabilty = "Acc" in str(checkStr)
         
